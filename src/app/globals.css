@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-crayon-red: #EE1D48;
+  --color-white: #FFFFFF;
+  --color-grey: #2D2D2D;
+  --color-black: #000000;
+}
