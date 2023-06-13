@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import Dialog from "@/components/Dialog";
 
-export default function ConfirmPresencePage() {
+export default function ConfirmPresenceError() {
   return (
     <Dialog href="/">
       <div className="grid justify-center gap-2">

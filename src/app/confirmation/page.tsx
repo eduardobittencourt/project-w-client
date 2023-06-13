@@ -1,8 +1,16 @@
-import { confirmPresence } from "@/backend/actions";
+import { redirect } from "next/navigation";
 
-export default function Confirmation() {
+export default function ConfirmationPage() {
+  async function confirmPresence(data: FormData) {
+    "use server";
+
+    const code = data.get("code");
+
+    redirect(`/confirmation/${code}`);
+  }
+
   return (
-    <section id="confirmation" className="my-32">
+    <main className="my-32">
       <h2 className="mb-2 text-center font-serif text-lg">
         Confirmar presença
       </h2>
@@ -32,6 +40,6 @@ export default function Confirmation() {
           Confirmar
         </button>
       </form>
-    </section>
+    </main>
   );
 }

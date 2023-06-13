@@ -1,17 +1,54 @@
-import { confirmGuestPresence } from "@/backend/actions";
-import { getGuest } from "@/backend/data";
-import Dialog from "@/components/Dialog";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
-type ConfirmPresencePageProps = {
-  params: { id: string };
-};
-export default async function ConfirmPresencePage({
-  params,
-}: ConfirmPresencePageProps) {
-  const guests = await getGuest(params.id);
+import Dialog from "@/components/Dialog";
+import { getSanityContent, updateSanityContent } from "@/services/sanity";
+import { Guest } from "@/types/Guest";
+import { SanityQueryResponse } from "@/types/Sanity";
+
+export async function getGuest(
+  code: string
+): Promise<SanityQueryResponse<Guest>> {
+  const response = await getSanityContent(
+    `*[_type == 'guest' && code == '${code}'][0] { guests }`
+  );
+
+  return response.json();
+}
+
+type ConfirmPresenceProps = { params: { id: string } };
+export default async function ConfirmPresencePage(props: ConfirmPresenceProps) {
+  const { id } = props.params;
+  const guests = await getGuest(id);
+
+  async function confirmGuestPresence(data: FormData) {
+    "use server";
+
+    const keys = data.getAll("key");
+
+    const finalGuestsStatus = guests.result.guests.reduce(
+      (acc, guest) => ({
+        ...acc,
+        [`guests[_key=="${guest._key}"].confirmed`]: keys.includes(guest._key),
+      }),
+      {}
+    );
+
+    await updateSanityContent([
+      {
+        patch: {
+          id: guests.result._id,
+          set: finalGuestsStatus,
+        },
+      },
+    ]);
+
+    revalidatePath(`/confirmation/${id}`);
+    redirect("/confirmation/thanks");
+  }
 
   return (
-    <Dialog href="/">
+    <Dialog href="/confirmation">
       <h2 className="text-center font-serif text-lg">Confirmar presença</h2>
 
       <div className="mx-auto mb-10 mt-5 h-px w-28 bg-red" />
@@ -21,8 +58,6 @@ export default async function ConfirmPresencePage({
       </p>
 
       <form action={confirmGuestPresence} className="grid justify-center gap-2">
-        <input type="hidden" name="code" defaultValue={params.id} />
-
         {guests.result.guests.map((guest) => (
           <div
             key={guest._key}

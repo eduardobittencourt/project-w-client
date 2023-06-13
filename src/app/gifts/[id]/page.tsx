@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { getGift } from "@/backend/data";
+import { getGift } from "./loader";
 
 type SelectedGiftPageProps = { params: { id: string } };
 export default async function SelectedGiftPage(props: SelectedGiftPageProps) {
@@ -23,7 +23,7 @@ export default async function SelectedGiftPage(props: SelectedGiftPageProps) {
       </table>
 
       <Link
-        href={`/gift/${gift.result._id}/buy`}
+        href={`/gifts/${gift.result._id}/buy`}
         className="mb-2 inline-block w-full bg-red px-6 py-4 text-center font-mono text-sm text-white"
       >
         Vou dar esse

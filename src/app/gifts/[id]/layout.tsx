@@ -1,8 +1,9 @@
 import Image from "next/image";
 
-import { getGift } from "@/backend/data";
 import Dialog from "@/components/Dialog";
 import moneyFormat from "@/utils/formatMoney";
+
+import { getGift } from "./loader";
 
 type SelectedGiftLayoutProps = {
   params: { id: string };
@@ -17,7 +18,7 @@ export default async function SelectedGiftLayout(
   if (!gift.result) return "";
 
   return (
-    <Dialog href="/">
+    <Dialog href="/gifts">
       <div className="grid items-center gap-8 tablet:grid-cols-5">
         <div className="relative h-0 pb-[75.5%] tablet:col-span-2">
           <Image

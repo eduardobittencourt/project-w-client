@@ -1,13 +1,33 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { getAccommodations } from "@/backend/data";
+import { getSanityContent } from "@/services/sanity";
+import { Accommodation } from "@/types/Accommodation";
+import { SanityQueryResponse } from "@/types/Sanity";
 
-export default async function Accommodations() {
+export async function getAccommodations(): Promise<
+  SanityQueryResponse<Accommodation[]>
+> {
+  const response = await getSanityContent(
+    `*[_type == 'accommodation'] {
+      _id,
+      name,
+      address,
+      homeDistance,
+      eventDistance,
+      link,
+      "image": image.asset->url
+    }`
+  );
+
+  return response.json();
+}
+
+export default async function AccommodationsPage() {
   const accommodations = await getAccommodations();
 
   return (
-    <section id="accommodations" className="my-32">
+    <main className="my-32">
       <h2 className="mb-2 text-center font-serif text-lg">Onde se Hospedar</h2>
       <p className="mb-7 text-center font-mono text-sm">
         Selecionamos alguns hotéis próximos ao local do evento e também a nossa
@@ -50,6 +70,6 @@ export default async function Accommodations() {
           </li>
         ))}
       </ul>
-    </section>
+    </main>
   );
 }

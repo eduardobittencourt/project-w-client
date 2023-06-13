@@ -1,14 +1,31 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { getGifts } from "@/backend/data";
+import { getSanityContent } from "@/services/sanity";
+import { Gift } from "@/types/Gift";
+import { SanityQueryResponse } from "@/types/Sanity";
 import moneyFormat from "@/utils/formatMoney";
 
-export default async function Gifts() {
+async function getGifts(): Promise<SanityQueryResponse<Gift[]>> {
+  const response = await getSanityContent(
+    `*[_type == 'gift'] {
+      _id,
+      title,
+      price,
+      bought,
+      category,
+      "image": image.asset->url
+    } | order(category asc)`
+  );
+
+  return response.json();
+}
+
+export default async function GiftsPage() {
   const gifts = await getGifts();
 
   return (
-    <section id="gifts" className="my-32">
+    <main className="my-32">
       <h2 className="mb-2 text-center font-serif text-lg">
         Lista de presentes
       </h2>
@@ -28,7 +45,7 @@ export default async function Gifts() {
         {gifts.result.map((gift) => (
           <li key={gift._id}>
             <Link
-              href={`/gift/${gift._id}`}
+              href={`/gifts/${gift._id}`}
               className="hover:border-gray-100 flex cursor-pointer flex-col items-center gap-4 rounded-lg border border-white px-4 py-6 transition hover:shadow-lg"
             >
               <div className="relative h-0 w-full pb-[75.5%]">
@@ -50,6 +67,6 @@ export default async function Gifts() {
           </li>
         ))}
       </ul>
-    </section>
+    </main>
   );
 }

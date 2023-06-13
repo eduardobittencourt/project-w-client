@@ -1,6 +1,9 @@
-import { selectGift } from "@/backend/actions";
-import { getGift } from "@/backend/data";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
+import { updateSanityContent } from "@/services/sanity";
+
+import { getGift } from "../loader";
 import AccessCodeArrayFields from "./client/AccessCodeArrayFields";
 
 type GiftBuyPageProps = { params: { id: string } };
@@ -8,7 +11,23 @@ export default async function GiftBuyPage(props: GiftBuyPageProps) {
   const { params } = props;
   const gift = await getGift(params.id);
 
-  if (!gift.result) return "";
+  async function selectGift(data: FormData) {
+    "use server";
+
+    const codes = data.getAll("code");
+
+    await updateSanityContent([
+      {
+        patch: {
+          id: gift.result._id,
+          set: { bought: codes },
+        },
+      },
+    ]);
+
+    revalidatePath("/gifts");
+    redirect("/gifts");
+  }
 
   return (
     <form action={selectGift}>
@@ -22,7 +41,7 @@ export default async function GiftBuyPage(props: GiftBuyPageProps) {
         &quot;+&quot; abaixo.
       </p>
 
-      <AccessCodeArrayFields id={gift.result._id} />
+      <AccessCodeArrayFields />
 
       <button
         type="submit"
