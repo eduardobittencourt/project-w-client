@@ -25,7 +25,7 @@ export default async function GiftsPage() {
   const gifts = await getGifts();
 
   return (
-    <main className="my-32">
+    <div>
       <h2 className="mb-2 text-center font-serif text-lg">
         Lista de presentes
       </h2>
@@ -67,6 +67,6 @@ export default async function GiftsPage() {
           </li>
         ))}
       </ul>
-    </main>
+    </div>
   );
 }

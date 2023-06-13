@@ -27,7 +27,7 @@ export default async function AccommodationsPage() {
   const accommodations = await getAccommodations();
 
   return (
-    <main className="my-32">
+    <div>
       <h2 className="mb-2 text-center font-serif text-lg">Onde se Hospedar</h2>
       <p className="mb-7 text-center font-mono text-sm">
         Selecionamos alguns hotéis próximos ao local do evento e também a nossa
@@ -70,6 +70,6 @@ export default async function AccommodationsPage() {
           </li>
         ))}
       </ul>
-    </main>
+    </div>
   );
 }

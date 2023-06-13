@@ -10,7 +10,7 @@ export default function ConfirmationPage() {
   }
 
   return (
-    <main className="my-32">
+    <div>
       <h2 className="mb-2 text-center font-serif text-lg">
         Confirmar presença
       </h2>
@@ -40,6 +40,6 @@ export default function ConfirmationPage() {
           Confirmar
         </button>
       </form>
-    </main>
+    </div>
   );
 }

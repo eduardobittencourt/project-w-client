@@ -1,25 +1,7 @@
-"use client";
-
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
 type DialogProps = { children: React.ReactNode; href: string | URL };
 export default function Dialog({ children, href }: DialogProps) {
-  const router = useRouter();
-
-  useEffect(() => {
-    const closeModal = (event: KeyboardEvent) => {
-      event.key === "Escape" && router.push(href as string);
-    };
-
-    document.addEventListener("keyup", closeModal, false);
-
-    return () => {
-      document.removeEventListener("keyup", closeModal, false);
-    };
-  }, [router, href]);
-
   return (
     <aside className="pointer-events-auto fixed left-0 top-0 z-10 flex h-screen w-screen items-center justify-center">
       <Link href={href}>

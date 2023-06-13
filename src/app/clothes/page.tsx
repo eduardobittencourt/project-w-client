@@ -1,6 +1,6 @@
 export default function ClothesPage() {
   return (
-    <main className="my-32">
+    <div>
       <h2 className="mb-2 text-center font-serif text-lg">O que vestir</h2>
       <p className="mb-7 text-center font-mono text-sm">
         Em dezembro enfrentamos altas temperaturas nesta região. O clima tende a
@@ -15,6 +15,6 @@ export default function ClothesPage() {
       </p>
 
       <div className="mx-auto mb-10 mt-5 h-px w-28 bg-red" />
-    </main>
+    </div>
   );
 }
