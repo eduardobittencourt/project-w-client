@@ -6,9 +6,7 @@ import { getSanityContent, updateSanityContent } from "@/services/sanity";
 import { Guest } from "@/types/Guest";
 import { SanityQueryResponse } from "@/types/Sanity";
 
-export async function getGuest(
-  code: string
-): Promise<SanityQueryResponse<Guest>> {
+async function getGuest(code: string): Promise<SanityQueryResponse<Guest>> {
   const response = await getSanityContent(
     `*[_type == 'guest' && code == '${code}'][0] { guests }`
   );

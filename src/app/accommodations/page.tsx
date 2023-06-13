@@ -5,7 +5,7 @@ import { getSanityContent } from "@/services/sanity";
 import { Accommodation } from "@/types/Accommodation";
 import { SanityQueryResponse } from "@/types/Sanity";
 
-export async function getAccommodations(): Promise<
+async function getAccommodations(): Promise<
   SanityQueryResponse<Accommodation[]>
 > {
   const response = await getSanityContent(
