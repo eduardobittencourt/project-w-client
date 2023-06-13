@@ -20,19 +20,6 @@ export default function Dialog({ children, href }: DialogProps) {
     };
   }, [router, href]);
 
-  useEffect(() => {
-    const documentWidth = document.documentElement.clientWidth;
-    const scrollbarWidth = Math.abs(window.innerWidth - documentWidth);
-
-    document.body.style.marginRight = `${scrollbarWidth}px`;
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.marginRight = "0px";
-      document.body.style.overflow = "auto";
-    };
-  }, []);
-
   return (
     <aside className="pointer-events-auto fixed left-0 top-0 z-10 flex h-screen w-screen items-center justify-center">
       <Link href={href}>

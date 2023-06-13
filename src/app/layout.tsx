@@ -25,8 +25,8 @@ type HomeLayoutProps = { children: React.ReactNode };
 export default function HomeLayout({ children }: HomeLayoutProps) {
   return (
     <html lang="pt-br" className={`${cinzel.variable} ${quicksand.variable}`}>
-      <body>
-        <nav className="fixed top-0 my-4 w-full">
+      <body className="w-[100vw] overflow-x-hidden">
+        <nav className="fixed top-0 z-10 w-[100vw] bg-white py-4">
           <div className="mx-auto flex max-w-4xl justify-between font-serif text-sm">
             <Link href="/">Home</Link>
             <span className="px-3 text-red">&#8226;</span>
