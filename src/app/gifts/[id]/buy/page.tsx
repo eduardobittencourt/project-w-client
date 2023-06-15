@@ -26,7 +26,7 @@ export default async function GiftBuyPage(props: GiftBuyPageProps) {
     ]);
 
     revalidatePath("/gifts");
-    redirect("/gifts");
+    redirect(`/gifts/${params.id}/thanks`);
   }
 
   return (
