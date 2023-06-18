@@ -27,7 +27,7 @@ export default async function GiftsPage() {
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
-            className="mx-auto h-6 w-6 animate-bounce stroke-red"
+            className="mx-auto hidden h-6 w-6 animate-bounce stroke-red tablet:block"
           >
             <path
               strokeLinecap="round"
