@@ -5,6 +5,10 @@ import Pietro from "@/assets/pietro.png";
 import { listGifts } from "@/resources/listGifts";
 import moneyFormat from "@/utils/moneyFormat";
 
+export const metadata = {
+  title: "Presentes | Letícia & Eduardo",
+};
+
 export default async function GiftsPage() {
   const gifts = await listGifts();
 

@@ -4,10 +4,12 @@ import Link from "next/link";
 import Tobias from "@/assets/tobias.png";
 import listAccommodations from "@/resources/listAccommodations";
 
+export const metadata = {
+  title: "Acomodações | Letícia & Eduardo",
+};
+
 export default async function AccommodationsPage() {
   const accommodations = await listAccommodations();
-
-  console.log(accommodations);
 
   return (
     <>
@@ -55,7 +57,7 @@ export default async function AccommodationsPage() {
               alt={accommodation.name}
               width={650}
               height={490}
-              sizes="50vw"
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="mb-2 h-auto w-full"
             />
             <p className="mb-2 text-sm font-bold">{accommodation.name}</p>

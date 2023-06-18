@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "Início | Letícia & Eduardo",
+  description: "Site do casamento da Letícia e do Eduardo",
+};
+
 export default function RootPage() {
   return (
     <div className="grid min-h-[calc(100vh-144px)] content-center gap-40">

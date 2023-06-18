@@ -5,11 +5,6 @@ import { Cinzel, Quicksand } from "next/font/google";
 
 import Header from "@/components/Header";
 
-export const metadata = {
-  title: "Letícia & Eduardo",
-  description: "Site do casamento da Letícia e do Eduardo",
-};
-
 const cinzel = Cinzel({
   subsets: ["latin"],
   display: "swap",

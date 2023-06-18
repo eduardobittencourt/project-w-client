@@ -3,6 +3,10 @@ import Image from "next/image";
 import Tobias from "@/assets/tobias.png";
 import confirmPresence from "@/resources/actions/confirmPresence";
 
+export const metadata = {
+  title: "Confirmar Presença | Letícia & Eduardo",
+};
+
 export default function ConfirmationPage() {
   return (
     <>

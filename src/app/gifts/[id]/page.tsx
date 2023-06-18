@@ -7,14 +7,13 @@ type GiftPageProps = { params: { id: string } };
 export default async function GiftPage({ params }: GiftPageProps) {
   const { id } = params;
   const gift = await getGift(id);
-  console.log(gift);
 
   return (
-    <div className="grid gap-10 md:grid-cols-[2fr_3fr]">
+    <div className="grid gap-10 md:grid-cols-2 md:gap-20">
       <Image
         src={gift.result.image}
         alt={gift.result.title}
-        sizes="(max-width: 768px) 100vw, 33vw"
+        sizes="(max-width: 768px) 100vw, 50vw"
         width={650}
         height={490}
         className="h-auto w-full"
