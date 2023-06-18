@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import Tobias from "@/assets/tobias.png";
 import listAccommodations from "@/resources/listAccommodations";
@@ -10,7 +11,7 @@ export default async function AccommodationsPage() {
 
   return (
     <>
-      <div className="grid min-h-[calc(100vh-80px)] items-center tablet:grid-cols-2">
+      <div className="mb-10 grid min-h-[calc(100vh-80px)] items-center lg:mb-0 lg:grid-cols-2">
         <div>
           <h1 className="mb-4 font-serif text-lg">Onde se Hospedar</h1>
           <p className="mb-8 text-sm">
@@ -29,7 +30,7 @@ export default async function AccommodationsPage() {
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
-            className="mx-auto hidden h-6 w-6 animate-bounce stroke-red tablet:block"
+            className="mx-auto hidden h-6 w-6 animate-bounce stroke-red lg:block"
           >
             <path
               strokeLinecap="round"
@@ -46,7 +47,7 @@ export default async function AccommodationsPage() {
         />
       </div>
 
-      <ul className="mb-20 grid grid-cols-2 gap-20">
+      <ul className="mb-20 grid gap-20 md:grid-cols-2">
         {accommodations.result.map((accommodation) => (
           <li key={accommodation._id}>
             <Image
@@ -100,7 +101,7 @@ export default async function AccommodationsPage() {
                 {accommodation.homeDistance}km da nossa casinha
               </span>
             </div>
-            <div className="mb-1 flex items-end gap-2">
+            <div className="mb-2 flex items-end gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -119,6 +120,13 @@ export default async function AccommodationsPage() {
                 {accommodation.eventDistance}km do local do evento
               </span>
             </div>
+            <Link
+              href={accommodation.link}
+              target="_blank"
+              className="border-b border-red text-xs font-bold"
+            >
+              Infomações aqui
+            </Link>
           </li>
         ))}
       </ul>

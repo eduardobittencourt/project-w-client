@@ -10,7 +10,7 @@ export default async function GiftsPage() {
 
   return (
     <>
-      <div className="grid min-h-[calc(100vh-144px)] items-center tablet:grid-cols-2">
+      <div className="mb-10 grid min-h-[calc(100vh-80px)] items-center lg:mb-0 lg:grid-cols-2">
         <div>
           <h1 className="mb-4 font-serif text-lg">Lista de Presentes</h1>
           <p className="mb-8 text-sm">
@@ -27,7 +27,7 @@ export default async function GiftsPage() {
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
-            className="mx-auto hidden h-6 w-6 animate-bounce stroke-red tablet:block"
+            className="mx-auto hidden h-6 w-6 animate-bounce stroke-red lg:block"
           >
             <path
               strokeLinecap="round"
@@ -60,7 +60,7 @@ export default async function GiftsPage() {
         Feijo, 371 - apto 202 | 90520-060 Porto Alegre/RS
       </p>
 
-      <ul className="mb-20 grid grid-cols-2 gap-x-4 gap-y-8 tablet:grid-cols-4">
+      <ul className="mb-20 grid gap-4 sm:grid-cols-2 md:gap-y-8 lg:grid-cols-4">
         {gifts.result.map((gift) => (
           <li
             key={gift._id}

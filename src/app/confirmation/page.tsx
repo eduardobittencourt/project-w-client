@@ -6,7 +6,7 @@ import confirmPresence from "@/resources/actions/confirmPresence";
 export default function ConfirmationPage() {
   return (
     <>
-      <div className="grid min-h-[calc(100vh-80px)] items-center tablet:grid-cols-2">
+      <div className="mb-10 grid min-h-[calc(100vh-80px)] items-center lg:mb-0 lg:grid-cols-2">
         <div>
           <h1 className="mb-4 font-serif text-lg">Confirmação de presença</h1>
           <p className="mb-8 text-sm">
@@ -25,7 +25,7 @@ export default function ConfirmationPage() {
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
-            className="mx-auto hidden h-6 w-6 animate-bounce stroke-red tablet:block"
+            className="mx-auto hidden h-6 w-6 animate-bounce stroke-red lg:block"
           >
             <path
               strokeLinecap="round"
