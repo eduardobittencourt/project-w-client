@@ -66,13 +66,13 @@ export default async function GiftsPage() {
             key={gift._id}
             className="rounded-lg px-4 py-6 transition-shadow hover:shadow-lg"
           >
-            <Link href={`/gift/${gift._id}`}>
+            <Link href={`/gifts/${gift._id}`}>
               <Image
                 src={gift.image}
                 alt={gift.title}
                 width={650}
                 height={490}
-                sizes="25vw"
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 100vw"
                 className="mb-2 h-auto w-full"
               />
               <p className="font-bold">{gift.title}</p>
