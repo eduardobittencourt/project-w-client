@@ -54,7 +54,7 @@ export default function Header() {
         </Link>
       </nav>
 
-      <label htmlFor="menu" className="cursor-pointer p-4 tablet:hidden">
+      <label htmlFor="menu" className="cursor-pointer p-1 tablet:hidden">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

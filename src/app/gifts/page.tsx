@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import Pietro from "@/assets/pietro.png";
 import { listGifts } from "@/resources/listGifts";
 import moneyFormat from "@/utils/moneyFormat";
 
@@ -9,16 +10,39 @@ export default async function GiftsPage() {
 
   return (
     <>
-      <h1 className="mb-4 font-serif text-lg">Lista de Presentes</h1>
-      <p className="mb-8 text-sm">
-        Queremos que se sintam à vontade para nos presentear de acordo com suas
-        preferências e possibilidades. Preparamos uma seleção de itens que
-        precisamos na nossa nova casinha. Além disso, pensando em facilitar a
-        contribuição para aqueles que preferem presentear de maneira mais
-        flexível, também disponibilizamos a opção de cotas de PIX. Explore sem
-        restrições, certamente qualquer presente escolhido com carinho será
-        muito apreciado.
-      </p>
+      <div className="grid min-h-[calc(100vh-144px)] items-center tablet:grid-cols-2">
+        <div>
+          <h1 className="mb-4 font-serif text-lg">Lista de Presentes</h1>
+          <p className="mb-8 text-sm">
+            Queremos que se sintam à vontade para nos presentear de acordo com
+            suas preferências e possibilidades. Preparamos uma seleção de itens
+            que precisamos na nossa nova casinha. Além disso, pensando em
+            facilitar a contribuição para aqueles que preferem presentear de
+            maneira mais flexível, também disponibilizamos a opção de cotas de
+            PIX. Explore sem restrições, certamente qualquer presente escolhido
+            com carinho será muito apreciado.
+          </p>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            className="mx-auto h-6 w-6 animate-bounce stroke-red"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3"
+            />
+          </svg>
+        </div>
+
+        <Image
+          src={Pietro}
+          alt="Foto do Pietro"
+          className="justify-self-center"
+        />
+      </div>
 
       <div className="mx-auto my-10 h-px w-24 bg-red" />
 
@@ -42,7 +66,7 @@ export default async function GiftsPage() {
             key={gift._id}
             className="rounded-lg px-4 py-6 transition-shadow hover:shadow-lg"
           >
-            <Link href={`/gifts/${gift._id}`}>
+            <Link href={`/gift/${gift._id}`}>
               <Image
                 src={gift.image}
                 alt={gift.title}
