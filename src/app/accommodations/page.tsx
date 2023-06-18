@@ -1,3 +1,3 @@
 export default function AccommodationsPage() {
-  return <main></main>;
+  return <div></div>;
 }

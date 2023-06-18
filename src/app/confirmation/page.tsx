@@ -1,3 +1,3 @@
 export default function ConfirmationPage() {
-  return <main></main>;
+  return <div></div>;
 }
