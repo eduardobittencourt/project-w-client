@@ -60,7 +60,7 @@ export default async function GiftsPage() {
         Feijo, 371 - apto 202 | 90520-060 Porto Alegre/RS
       </p>
 
-      <ul className="grid grid-cols-2 gap-x-4 gap-y-8 tablet:grid-cols-4">
+      <ul className="mb-20 grid grid-cols-2 gap-x-4 gap-y-8 tablet:grid-cols-4">
         {gifts.result.map((gift) => (
           <li
             key={gift._id}
