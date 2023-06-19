@@ -68,7 +68,9 @@ export default async function GiftsPage() {
         {gifts.result.map((gift) => (
           <li
             key={gift._id}
-            className="rounded-lg px-4 py-6 transition-shadow hover:shadow-lg"
+            className={`rounded-lg px-4 py-6 transition-shadow hover:shadow-lg ${
+              gift.bought && "pointer-events-none opacity-50"
+            }`}
           >
             <Link href={`/gifts/${gift._id}`}>
               <Image
@@ -80,7 +82,7 @@ export default async function GiftsPage() {
                 className="mb-2 h-auto w-full"
               />
               <p className="font-bold">{gift.title}</p>
-              <p>{moneyFormat(gift.price)}</p>
+              <p>{gift.bought ? "Comprado" : moneyFormat(gift.price)}</p>
             </Link>
           </li>
         ))}
