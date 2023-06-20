@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import Pietro from "@/assets/pietro.png";
 import { listGifts } from "@/resources/listGifts";
+import { listQuotas } from "@/resources/listQuotas";
 import moneyFormat from "@/utils/moneyFormat";
 
 export const metadata = {
@@ -10,7 +11,7 @@ export const metadata = {
 };
 
 export default async function GiftsPage() {
-  const gifts = await listGifts();
+  const [gifts, quotas] = await Promise.all([listGifts(), listQuotas()]);
 
   return (
     <>
@@ -81,6 +82,36 @@ export default async function GiftsPage() {
               />
               <p className="font-bold">{gift.title}</p>
               <p>{gift.bought ? "Comprado" : moneyFormat(gift.price)}</p>
+            </Link>
+          </li>
+        ))}
+      </ul>
+
+      <h2 className="mb-4 font-serif text-md">Cotas</h2>
+      <p className="mb-2">
+        Ficou em dúvida na hora de escolher algo da lista, ou prefere presentear
+        com um valor livre? Separamos algumas cotas de PIX, é só escolher qual
+        atende melhor o seu perfil. Agradecemos desde já por todo o carinho e
+        apoio.
+      </p>
+
+      <ul className="mb-20 grid gap-4 sm:grid-cols-2 md:gap-y-8 lg:grid-cols-3">
+        {quotas.result.map((quota) => (
+          <li
+            key={quota._id}
+            className="rounded-lg px-4 py-6 transition-shadow hover:shadow-lg"
+          >
+            <Link href={`/quotas/${quota._id}`}>
+              <Image
+                src={quota.image}
+                alt={quota.title}
+                width={650}
+                height={490}
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 100vw"
+                className="mb-2 h-auto w-full"
+              />
+              <p className="font-bold">{quota.title}</p>
+              <p>{moneyFormat(quota.price)}</p>
             </Link>
           </li>
         ))}
