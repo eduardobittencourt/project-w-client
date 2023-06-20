@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import Tobias from "@/assets/tobias.png";
 import listAccommodations from "@/resources/listAccommodations";
+import measurementFormat from "@/utils/measurementFormat";
 
 export const metadata = {
   title: "Acomodações | Letícia & Eduardo",
@@ -100,7 +101,7 @@ export default async function AccommodationsPage() {
                 />
               </svg>
               <span className="text-xs">
-                {accommodation.homeDistance}km da nossa casinha
+                {measurementFormat(accommodation.homeDistance)} da nossa casinha
               </span>
             </div>
             <div className="mb-2 flex items-end gap-2">
@@ -119,7 +120,8 @@ export default async function AccommodationsPage() {
                 />
               </svg>
               <span className="text-xs">
-                {accommodation.eventDistance}km do local do evento
+                {measurementFormat(accommodation.eventDistance)} do local do
+                evento
               </span>
             </div>
             <Link
