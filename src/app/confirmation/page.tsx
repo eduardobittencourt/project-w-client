@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import Tobias from "@/assets/tobias.png";
+import Oreo from "@/assets/oreo.png";
 import confirmPresence from "@/resources/actions/confirmPresence";
 
 export const metadata = {
@@ -40,7 +40,7 @@ export default function ConfirmationPage() {
         </div>
 
         <Image
-          src={Tobias}
+          src={Oreo}
           alt="Foto do Tobias"
           className="justify-self-center"
         />
