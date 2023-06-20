@@ -24,7 +24,7 @@ export async function getGift(
   );
 
   const response = await fetch(requestURL.toString(), {
-    next: { tags: [`getGift-${gift}`] },
+    next: { tags: [`getGift-${gift}`], revalidate: 0 },
   });
 
   return response.json();

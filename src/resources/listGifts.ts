@@ -19,7 +19,7 @@ export async function listGifts(): Promise<SanityQueryResponse<Gift[]>> {
   );
 
   const response = await fetch(requestURL.toString(), {
-    next: { tags: ["listGifts"] },
+    next: { tags: ["listGifts"], revalidate: 0 },
   });
 
   return response.json();

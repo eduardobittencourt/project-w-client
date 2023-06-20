@@ -14,7 +14,7 @@ export async function getGuests(
   );
 
   const response = await fetch(requestURL.toString(), {
-    next: { tags: [`getGuests-${code}`] },
+    next: { tags: [`getGuests-${code}`], revalidate: 0 },
   });
 
   return response.json();

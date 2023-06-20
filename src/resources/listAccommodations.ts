@@ -22,7 +22,7 @@ export default async function listAccommodations(): Promise<
   );
 
   const response = await fetch(requestURL.toString(), {
-    next: { tags: ["listAccommodations"] },
+    next: { tags: ["listAccommodations"], revalidate: 0 },
   });
 
   return response.json();

@@ -18,7 +18,7 @@ export async function listQuotas(): Promise<SanityQueryResponse<Quota[]>> {
   );
 
   const response = await fetch(requestURL.toString(), {
-    next: { tags: ["listQuotas"] },
+    next: { tags: ["listQuotas"], revalidate: 0 },
   });
 
   return response.json();
