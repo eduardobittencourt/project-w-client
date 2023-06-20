@@ -10,7 +10,7 @@ export const metadata = {
 export default function ConfirmationPage() {
   return (
     <>
-      <div className="mb-10 grid min-h-[calc(100vh-80px)] items-center lg:mb-0 lg:grid-cols-2">
+      <div className="my-10 grid items-center gap-10 lg:my-0 lg:min-h-[calc(100vh-80px)] lg:grid-cols-2">
         <div>
           <h1 className="mb-4 font-serif text-lg">Confirmação de presença</h1>
           <p className="mb-8 text-sm">

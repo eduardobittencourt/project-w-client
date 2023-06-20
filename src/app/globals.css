@@ -8,3 +8,7 @@
   --color-grey: #E2E8F0;
   --color-black: #000000;
 }
+
+html {
+  scrollbar-gutter: stable;
+}
