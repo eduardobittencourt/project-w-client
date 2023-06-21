@@ -50,8 +50,7 @@ export default async function GiftPage({ params }: GiftPageProps) {
         <p className="mb-8 text-xs">
           Caso decida fazer a compra desse produto junto com outras pessoas,
           adicione o código de acesso de todos os participantes clicando no
-          botão &quot;+&quot; abaixo. (e deixa esse + vermelho como na tela
-          anterior)
+          botão &quot;<span className="text-red">+</span>&quot; abaixo.
         </p>
 
         <form action={selectGift}>

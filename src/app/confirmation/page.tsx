@@ -14,15 +14,11 @@ export default function ConfirmationPage() {
         <div>
           <h1 className="mb-4 font-serif text-lg">Confirmação de presença</h1>
           <p className="mb-8 text-sm">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-            quis ante sed nunc fermentum efficitur quis nec enim. Suspendisse
-            tortor tortor, rhoncus fermentum sem sit amet, porttitor volutpat
-            tellus. Duis vel pulvinar libero, vitae euismod felis. Aenean non
-            diam sit amet neque gravida dictum. Vestibulum euismod tellus ut est
-            porttitor volutpat. Ut tempor aliquam metus, placerat lobortis elit
-            finibus nec. Aliquam vehicula interdum eros, eu maximus sapien
-            feugiat id. Quisque pretium metus quis massa pulvinar rutrum.
-            Integer a leo viverra, fermentum sem eget, sodales sapien.
+            Estamos super ansiosos pra celebrar esse momento especial com vocês.
+            Por favor, pedimos que gentilmente confirme sua presença até o dia
+            23 de novembro de 2023. Isso nos ajudará a planejar todos os
+            detalhes da celebração e garantir que tudo esteja perfeito para
+            curtirmos cada segundo.
           </p>
           <svg
             xmlns="http://www.w3.org/2000/svg"

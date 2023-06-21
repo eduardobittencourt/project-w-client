@@ -54,9 +54,9 @@ export default async function GiftsPage() {
         Os links abaixo são sugestões de onde encontrar o produto, fiquem à
         vontade para adquiri-los onde for mais conveniente para vocês. Para mais
         detalhes, clique no item e, caso optem por algum, não esqueçam de
-        marcá-lo como comprado! Vai dividir com alguém? É só clicar em “
-        <span className="text-red">+</span>” ao marcar como comprado e colocar o
-        código do outro convidado.
+        marcá-lo como comprado! Vai dividir com alguém? É só clicar em &quot;
+        <span className="text-red">+</span>&quot; ao marcar como comprado e
+        colocar o código do outro convidado.
       </p>
       <p className="mb-8">
         <span className="font-bold">Endereço para entrega:</span> Rua Coronel
@@ -94,8 +94,12 @@ export default async function GiftsPage() {
         atende melhor o seu perfil. Agradecemos desde já por todo o carinho e
         apoio.
       </p>
+      <p className="mb-8">
+        <span className="font-bold">Email PIX:</span>{" "}
+        manzolibittencourt@gmail.com
+      </p>
 
-      <ul className="mb-20 grid gap-4 sm:grid-cols-2 md:gap-y-8 lg:grid-cols-3">
+      <ul className="mb-20 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {quotas.result.map((quota) => (
           <li
             key={quota._id}
@@ -111,7 +115,7 @@ export default async function GiftsPage() {
                 className="mb-2 h-auto w-full"
               />
               <p className="font-bold">{quota.title}</p>
-              <p>{moneyFormat(quota.price)}</p>
+              <p>{quota.price ? moneyFormat(quota.price) : "--"}</p>
             </Link>
           </li>
         ))}

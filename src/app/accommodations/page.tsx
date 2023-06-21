@@ -18,15 +18,13 @@ export default async function AccommodationsPage() {
         <div>
           <h1 className="mb-4 font-serif text-lg">Onde se Hospedar</h1>
           <p className="mb-8 text-sm">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-            quis ante sed nunc fermentum efficitur quis nec enim. Suspendisse
-            tortor tortor, rhoncus fermentum sem sit amet, porttitor volutpat
-            tellus. Duis vel pulvinar libero, vitae euismod felis. Aenean non
-            diam sit amet neque gravida dictum. Vestibulum euismod tellus ut est
-            porttitor volutpat. Ut tempor aliquam metus, placerat lobortis elit
-            finibus nec. Aliquam vehicula interdum eros, eu maximus sapien
-            feugiat id. Quisque pretium metus quis massa pulvinar rutrum.
-            Integer a leo viverra, fermentum sem eget, sodales sapien.
+            Selecionamos alguns hotéis próximos ao local do evento, bem como a
+            nossa casinha, para facilitar a sua escolha. Recomendamos que você
+            faça sua reserva o quanto antes, garantindo assim sua estadia nos
+            arredores do local do evento. Não hesite em entrar em contato com os
+            hotéis diretamente para obter mais detalhes e, caso tenha alguma
+            dúvida sobre a localização ou precise de outra opção e só nos
+            avisar.
           </p>
           <svg
             xmlns="http://www.w3.org/2000/svg"
