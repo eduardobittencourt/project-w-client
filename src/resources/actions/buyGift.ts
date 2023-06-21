@@ -1,40 +1,38 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
-import { getSanityContent } from "@/providers/sanity";
+import { getSanityContent, updateSanityContent } from "@/providers/sanity";
+import { Guest } from "@/types/Guest";
 
 export default async function selectGift(data: FormData) {
-  const requestURL = new URL(`mutate/production`, process.env.SANITY_API_URL);
-
   const id = data.get("id");
-  const codes = data.getAll("code");
+  const codes = data
+    .getAll("code")
+    .map((code) => code.toString().toUpperCase());
 
   const guests = await getSanityContent(
-    `*[_type == 'guest' && code in [${codes.map(
-      (code) => `"${code}"`
-    )}]] { guests }`
+    `*[_type == 'guest' && code in ["${codes.join('","')}"]]`
   ).then((result) => result.json());
 
-  console.log(guests);
+  const notFoundCodes = codes.filter(
+    (code) =>
+      guests.result.findIndex((guest: Guest) => guest.code === code) === -1
+  );
 
-  // await fetch(requestURL.toString(), {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     Authorization: `bearer ${process.env.SANITY_TOKEN}`,
-  //   },
-  //   body: JSON.stringify({
-  //     mutations: [
-  //       {
-  //         patch: {
-  //           id,
-  //           set: { bought: codes },
-  //         },
-  //       },
-  //     ],
-  //   }),
-  // });
+  if (notFoundCodes.length)
+    throw new Error(`Códigos não encontrados: ${notFoundCodes}`);
 
-  // revalidatePath("/gifts");
+  await updateSanityContent([
+    {
+      patch: {
+        id,
+        set: { bought: codes },
+      },
+    },
+  ]);
+
+  revalidatePath("/gifts");
+  redirect("/gifts/thanks");
 }

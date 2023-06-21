@@ -8,7 +8,7 @@ export async function getGuests(
   code: string
 ): Promise<SanityQueryResponse<Guest>> {
   const response = await getSanityContent(
-    `*[_type == 'guest' && code == '${code}'][0] { guests }`
+    `*[_type == 'guest' && code == '${code}'][0]`
   );
 
   return response.json();
