@@ -8,6 +8,7 @@ import moneyFormat from "@/utils/moneyFormat";
 
 export const metadata = {
   title: "Presentes | Letícia & Eduardo",
+  description: "Lista de presentes do casamento de Letícia e Eduardo",
 };
 
 export default async function GiftsPage() {
@@ -68,7 +69,7 @@ export default async function GiftsPage() {
           <li
             key={gift._id}
             className={`rounded-lg px-4 py-6 transition-shadow hover:shadow-lg ${
-              gift.bought && "pointer-events-none opacity-50"
+              gift.bought && "pointer-events-none opacity-60"
             }`}
           >
             <Link href={`/gifts/${gift._id}`}>

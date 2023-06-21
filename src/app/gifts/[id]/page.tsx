@@ -6,6 +6,11 @@ import moneyFormat from "@/utils/moneyFormat";
 
 import AccessCodeArrayFields from "./AccessCodeArrayFields";
 
+export const metadata = {
+  title: "Presente | Letícia & Eduardo",
+  description: "Detalhe de presente do casamento de Letícia e Eduardo",
+};
+
 type GiftPageProps = { params: { id: string } };
 export default async function GiftPage({ params }: GiftPageProps) {
   const { id } = params;

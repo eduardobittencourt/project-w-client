@@ -7,6 +7,8 @@ import measurementFormat from "@/utils/measurementFormat";
 
 export const metadata = {
   title: "Acomodações | Letícia & Eduardo",
+  description:
+    "Lista de hospedagens recomendadas do casamento de Letícia e Eduardo",
 };
 
 export default async function AccommodationsPage() {

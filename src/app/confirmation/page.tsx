@@ -5,6 +5,8 @@ import confirmPresence from "@/resources/actions/confirmPresence";
 
 export const metadata = {
   title: "Confirmar Presença | Letícia & Eduardo",
+  description:
+    "Página de confirmação de presença do casamento de Letícia e Eduardo",
 };
 
 export default function ConfirmationPage() {

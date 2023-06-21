@@ -21,6 +21,8 @@ export default function AccessCodeArrayFields() {
       ))}
 
       <button
+        id="add"
+        title="Add more codes"
         type="button"
         onClick={() => setCodeCount(codeCount + 1)}
         className="h-8 w-8 rounded-full bg-red p-2"
