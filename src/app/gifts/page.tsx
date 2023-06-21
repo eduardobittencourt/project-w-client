@@ -69,7 +69,7 @@ export default async function GiftsPage() {
           <li
             key={gift._id}
             className={`rounded-lg px-4 py-6 transition-shadow hover:shadow-lg ${
-              gift.bought && "pointer-events-none opacity-60"
+              gift.bought?.length && "pointer-events-none opacity-60"
             }`}
           >
             <Link href={`/gifts/${gift._id}`}>
@@ -82,7 +82,9 @@ export default async function GiftsPage() {
                 className="mb-2 h-auto w-full"
               />
               <p className="font-bold">{gift.title}</p>
-              <p>{gift.bought ? "Comprado" : moneyFormat(gift.price)}</p>
+              <p>
+                {gift.bought?.length ? "Comprado" : moneyFormat(gift.price)}
+              </p>
             </Link>
           </li>
         ))}
