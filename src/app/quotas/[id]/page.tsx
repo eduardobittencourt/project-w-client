@@ -1,8 +1,9 @@
 import Image from "next/image";
-import Link from "next/link";
 
 import { getQuota } from "@/resources/getQuota";
 import moneyFormat from "@/utils/moneyFormat";
+
+import QuotaPageForm from "./client/Form";
 
 export const metadata = {
   title: "Presente | Letícia & Eduardo",
@@ -13,8 +14,6 @@ type QuotaPageProps = { params: { id: string } };
 export default async function QuotaPage({ params }: QuotaPageProps) {
   const { id } = params;
   const quota = await getQuota(id);
-
-  console.log(quota);
 
   return (
     <div className="grid gap-10 md:grid-cols-2 md:gap-20">
@@ -37,6 +36,8 @@ export default async function QuotaPage({ params }: QuotaPageProps) {
           ""
         )}
         <p className="mb-12 text-sm">{quota.result.description}</p>
+
+        <QuotaPageForm id={id} />
       </div>
     </div>
   );
