@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 import Pietro from "@/assets/pietro.png";
-import { listGifts } from "@/resources/listGifts";
-import { listQuotas } from "@/resources/listQuotas";
+import { listGifts } from "@/resources/queries/listGifts";
+import { listQuotas } from "@/resources/queries/listQuotas";
 import moneyFormat from "@/utils/moneyFormat";
 
 export const metadata = {

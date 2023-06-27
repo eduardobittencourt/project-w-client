@@ -36,7 +36,12 @@ export default function QuotaPageForm({ id }: { id: string }) {
           </svg>
         </button>
 
-        <button type="submit">submit</button>
+        <button
+          type="submit"
+          className="mb-2 inline-block w-full bg-red px-6 py-4 text-center text-sm text-white"
+        >
+          Confirmar compra
+        </button>
       </fieldset>
     </form>
   );

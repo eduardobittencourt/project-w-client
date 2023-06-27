@@ -2,6 +2,7 @@
 
 import { randomUUID } from "crypto";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 import { getSanityContent, updateSanityContent } from "@/providers/sanity";
 import { Guest } from "@/types/Guest";
@@ -28,7 +29,23 @@ export async function buyQuota(data: FormData) {
     {
       patch: {
         id,
-        set: {
+        insert: {
+          after: "bought[-1]",
+          items: guests.result.map((guest: Guest) => ({
+            _type: "code",
+            _key: randomUUID(),
+            _ref: guest._id,
+          })),
+        },
+      },
+    },
+  ]);
+
+  await updateSanityContent([
+    {
+      patch: {
+        id,
+        setIfMissing: {
           bought: guests.result.map((guest: Guest) => ({
             _type: "code",
             _key: randomUUID(),
@@ -40,4 +57,5 @@ export async function buyQuota(data: FormData) {
   ]);
 
   revalidatePath("/gifts");
+  redirect("/quotas/thanks");
 }

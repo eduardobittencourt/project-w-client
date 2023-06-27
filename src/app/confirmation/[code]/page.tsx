@@ -1,4 +1,4 @@
-import { getGuests } from "@/resources/getGuests";
+import { getGuests } from "@/resources/queries/getGuests";
 
 type GuestConfirmationPageProps = { params: { code: string } };
 export default async function GuestConfirmationPage({

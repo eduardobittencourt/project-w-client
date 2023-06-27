@@ -1,12 +1,13 @@
 "use server";
 
+import { randomUUID } from "crypto";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 import { getSanityContent, updateSanityContent } from "@/providers/sanity";
 import { Guest } from "@/types/Guest";
 
-export default async function selectGift(data: FormData) {
+export async function buyGift(data: FormData) {
   const id = data.get("id");
   const codes = data
     .getAll("code")
@@ -28,7 +29,13 @@ export default async function selectGift(data: FormData) {
     {
       patch: {
         id,
-        set: { bought: codes },
+        set: {
+          bought: guests.result.map((guest: Guest) => ({
+            _type: "code",
+            _key: randomUUID(),
+            _ref: guest._id,
+          })),
+        },
       },
     },
   ]);

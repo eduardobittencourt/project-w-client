@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 import Oreo from "@/assets/oreo.png";
-import confirmPresence from "@/resources/actions/confirmPresence";
+import confirmPresence from "@/resources/mutations/confirmPresence";
 
 export const metadata = {
   title: "Confirmar Presença | Letícia & Eduardo",

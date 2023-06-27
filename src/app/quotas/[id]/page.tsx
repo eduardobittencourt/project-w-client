@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { getQuota } from "@/resources/getQuota";
+import { getQuota } from "@/resources/queries/getQuota";
 import moneyFormat from "@/utils/moneyFormat";
 
 import QuotaPageForm from "./client/Form";

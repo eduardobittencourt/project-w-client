@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import Tobias from "@/assets/tobias.png";
-import listAccommodations from "@/resources/listAccommodations";
+import listAccommodations from "@/resources/queries/listAccommodations";
 import measurementFormat from "@/utils/measurementFormat";
 
 export const metadata = {

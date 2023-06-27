@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import selectGift from "@/resources/actions/buyGift";
-import { getGift } from "@/resources/getGift";
+import { buyGift } from "@/resources/mutations/buyGift";
+import { getGift } from "@/resources/queries/getGift";
 import moneyFormat from "@/utils/moneyFormat";
 
 import AccessCodeArrayFields from "./AccessCodeArrayFields";
@@ -78,7 +78,7 @@ export default async function GiftPage({ params }: GiftPageProps) {
           botão &quot;<span className="text-red">+</span>&quot; abaixo.
         </p>
 
-        <form action={selectGift}>
+        <form action={buyGift}>
           <input type="hidden" name="id" defaultValue={id} />
 
           <AccessCodeArrayFields />
