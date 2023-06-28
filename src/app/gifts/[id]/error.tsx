@@ -2,6 +2,7 @@
 
 type GiftErrorProps = { error: Error; reset: () => void };
 export default function GiftError({ reset, error }: GiftErrorProps) {
+  console.log(error);
   return (
     <div className="flex flex-col items-center">
       <h2 className="mb-8 font-serif text-lg">Ooops!</h2>
