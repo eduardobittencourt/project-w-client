@@ -1,72 +1,128 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { getSanityContent } from "@/services/sanity";
-import { Gift } from "@/types/Gift";
-import { SanityQueryResponse } from "@/types/Sanity";
-import moneyFormat from "@/utils/formatMoney";
+import Pietro from "@/assets/pietro.png";
+import { listGifts } from "@/resources/queries/listGifts";
+import { listQuotas } from "@/resources/queries/listQuotas";
+import moneyFormat from "@/utils/moneyFormat";
 
-async function getGifts(): Promise<SanityQueryResponse<Gift[]>> {
-  const response = await getSanityContent(
-    `*[_type == 'gift'] {
-      _id,
-      title,
-      price,
-      bought,
-      category,
-      "image": image.asset->url
-    } | order(category asc)`
-  );
-
-  return response.json();
-}
+export const metadata = {
+  title: "Presentes | Letícia & Eduardo",
+  description: "Lista de presentes do casamento de Letícia e Eduardo",
+};
 
 export default async function GiftsPage() {
-  const gifts = await getGifts();
+  const [gifts, quotas] = await Promise.all([listGifts(), listQuotas()]);
 
   return (
-    <div>
-      <h2 className="mb-2 text-center font-serif text-lg">
-        Lista de presentes
-      </h2>
-      <p className="mb-7 text-center font-mono text-sm">
-        Sugestões de itens que realmente precisamos. Fiquem à vontade para
-        adquiri-los onde for mais conveniente para vocês. Caso prefiram, também
-        há a opção de PIX. Ao optar por algum item da lista, não esqueça de
-        marca-lo como comprado!
-        <br />
-        Endereço para entrega: Rua Coronel Feijo, 371 - apto 202 | 90520-060
-        Porto Alegre/RS
+    <>
+      <div className="my-10 grid items-center gap-10 lg:my-0 lg:min-h-[calc(100vh-80px)] lg:grid-cols-2">
+        <div>
+          <h1 className="mb-4 font-serif text-lg">Lista de Presentes</h1>
+          <p className="mb-8 text-sm">
+            Queremos que se sintam à vontade para nos presentear de acordo com
+            suas preferências e possibilidades. Preparamos uma seleção de itens
+            que precisamos na nossa nova casinha. E, para facilitar a
+            contribuição daqueles que preferem presentear de maneira mais
+            flexível, também disponibilizamos a opção de cotas de PIX. Explore
+            sem restrições, certamente qualquer presente escolhido com carinho
+            será muito apreciado.
+          </p>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            className="mx-auto hidden h-6 w-6 animate-bounce stroke-red lg:block"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3"
+            />
+          </svg>
+        </div>
+
+        <Image
+          src={Pietro}
+          alt="Foto do Pietro"
+          className="justify-self-center"
+        />
+      </div>
+
+      <h2 className="mb-4 font-serif text-md">Produtos</h2>
+      <p className="mb-2">
+        Os links abaixo são sugestões de onde encontrar o produto, fiquem à
+        vontade para adquiri-los onde for mais conveniente para vocês. Para mais
+        detalhes, clique no item e, caso optem por algum, não esqueçam de
+        marcá-lo como comprado! Vai dividir com alguém? É só clicar em &quot;
+        <span className="text-red">+</span>&quot; ao marcar como comprado e
+        colocar o código do outro convidado.
+      </p>
+      <p className="mb-8">
+        <span className="font-bold">Endereço para entrega:</span> Rua Coronel
+        Feijo, 371 - apto 202 | 90520-060 Porto Alegre/RS
       </p>
 
-      <div className="mx-auto mb-10 mt-5 h-px w-28 bg-red" />
-
-      <ul className="my-10 grid gap-x-20 gap-y-10 tablet:grid-cols-2 desktop:grid-cols-3">
+      <ul className="mb-20 grid gap-4 sm:grid-cols-2 md:gap-y-8 lg:grid-cols-4">
         {gifts.result.map((gift) => (
-          <li key={gift._id}>
-            <Link
-              href={`/gifts/${gift._id}`}
-              className="hover:border-gray-100 flex cursor-pointer flex-col items-center gap-4 rounded-lg border border-white px-4 py-6 transition hover:shadow-lg"
-            >
-              <div className="relative h-0 w-full pb-[75.5%]">
-                <Image
-                  className="object-contain"
-                  src={gift.image}
-                  alt={gift.title}
-                  fill
-                  sizes="(max-width: 960px) 100vw, (max-width: 1248px) 50vw, 33vw"
-                />
-              </div>
-              <h3 className="mx-4 text-center font-serif text-sm">
-                {gift.title}
-              </h3>
-              <span className="text-center font-mono text-sm text-red">
+          <li
+            key={gift._id}
+            className={`rounded-lg px-4 py-6 transition-shadow hover:shadow-lg ${
+              gift.bought?.length && "pointer-events-none opacity-60"
+            }`}
+          >
+            <Link href={`/gifts/${gift._id}`}>
+              <Image
+                src={gift.image}
+                alt={gift.title}
+                width={650}
+                height={490}
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 100vw"
+                className="mb-2 h-auto w-full"
+              />
+              <p className="font-bold">{gift.title}</p>
+              <p>
                 {gift.bought?.length ? "Comprado" : moneyFormat(gift.price)}
-              </span>
+              </p>
             </Link>
           </li>
         ))}
       </ul>
-    </div>
+
+      <h2 className="mb-4 font-serif text-md">Cotas</h2>
+      <p className="mb-2">
+        Ficou em dúvida na hora de escolher algo da lista, ou prefere presentear
+        com um valor livre? Separamos algumas cotas de PIX, é só escolher qual
+        atende melhor o seu perfil. Agradecemos desde já por todo o carinho e
+        apoio.
+      </p>
+      <p className="mb-8">
+        <span className="font-bold">Email PIX:</span>{" "}
+        manzolibittencourt@gmail.com
+      </p>
+
+      <ul className="mb-20 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {quotas.result.map((quota) => (
+          <li
+            key={quota._id}
+            className="rounded-lg px-4 py-6 transition-shadow hover:shadow-lg"
+          >
+            <Link href={`/quotas/${quota._id}`}>
+              <Image
+                src={quota.image}
+                alt={quota.title}
+                width={650}
+                height={490}
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 100vw"
+                className="mb-2 h-auto w-full"
+              />
+              <p className="font-bold">{quota.title}</p>
+              <p>{quota.price ? moneyFormat(quota.price) : "--"}</p>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
