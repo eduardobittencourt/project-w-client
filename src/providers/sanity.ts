@@ -16,5 +16,6 @@ export async function updateSanityContent(body: object[]) {
       Authorization: `bearer ${process.env.SANITY_TOKEN}`,
     },
     body: JSON.stringify({ mutations: body }),
+    next: { revalidate: 0 },
   });
 }

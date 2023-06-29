@@ -1,3 +1,4 @@
+import { confirmGuestPresence } from "@/resources/mutations/confirmGuestPresence";
 import { getGuests } from "@/resources/queries/getGuests";
 
 type GuestConfirmationPageProps = { params: { code: string } };
@@ -19,15 +20,18 @@ export default async function GuestConfirmationPage({
         vel pulvinar libero, vitae euismod felis.
       </p>
 
-      <form action="" className="grid justify-center gap-2">
+      <form action={confirmGuestPresence} className="grid justify-center gap-2">
+        <input type="hidden" name="id" defaultValue={guests.result._id} />
+
         {guests.result.guests.map((guest) => (
           <div
             key={guest._key}
             className="flex items-center gap-2 font-mono text-sm"
           >
+            <input type="hidden" name="guest" defaultValue={guest._key} />
             <input
               type="checkbox"
-              name="key"
+              name="confirmed"
               value={guest._key}
               defaultChecked={guest.confirmed}
               className='relative flex h-6 w-6 cursor-pointer appearance-none items-center justify-center border border-red checked:before:block checked:before:text-center checked:before:leading-none checked:before:text-red checked:before:content-["✓"]'
@@ -35,6 +39,8 @@ export default async function GuestConfirmationPage({
             <label htmlFor="key">{guest.name}</label>
           </div>
         ))}
+
+        <button type="submit">Confirmar</button>
       </form>
     </div>
   );
