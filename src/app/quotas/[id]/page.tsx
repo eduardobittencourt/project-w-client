@@ -1,9 +1,9 @@
 import Image from "next/image";
 
+import GuestCodeForm from "@/components/GuestCodeForm";
+import { buyQuota } from "@/resources/mutations/buyQuota";
 import { getQuota } from "@/resources/queries/getQuota";
 import moneyFormat from "@/utils/moneyFormat";
-
-import QuotaPageForm from "./client/Form";
 
 export const metadata = {
   title: "Presente | Letícia & Eduardo",
@@ -37,7 +37,7 @@ export default async function QuotaPage({ params }: QuotaPageProps) {
         )}
         <p className="mb-12 text-sm">{quota.result.description}</p>
 
-        <QuotaPageForm id={id} />
+        <GuestCodeForm id={id} action={buyQuota} />
       </div>
     </div>
   );

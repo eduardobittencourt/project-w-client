@@ -1,11 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import GuestCodeForm from "@/components/GuestCodeForm";
 import { buyGift } from "@/resources/mutations/buyGift";
 import { getGift } from "@/resources/queries/getGift";
 import moneyFormat from "@/utils/moneyFormat";
-
-import AccessCodeArrayFields from "./AccessCodeArrayFields";
 
 export const metadata = {
   title: "Presente | Letícia & Eduardo",
@@ -31,7 +30,9 @@ export default async function GiftPage({ params }: GiftPageProps) {
       <div>
         <h1 className="mb-2 font-serif text-lg">{gift.result.title}</h1>
         <span className="mb-4 inline-block border-b border-red text-sm">
-          {moneyFormat(gift.result.price)}
+          {gift.result.bought?.length
+            ? "Comprado"
+            : moneyFormat(gift.result.price)}
         </span>
         <p className="mb-12 text-sm">{gift.result.description}</p>
 
@@ -66,30 +67,23 @@ export default async function GiftPage({ params }: GiftPageProps) {
           </Link>
         </div>
 
-        <h2 className="mb-4 font-serif text-sm">Avisar sobre a compra</h2>
-        <p className="mb-2 text-xs">
-          Gostou dessa opção e vai nos presentear com esse produto? Por favor,
-          nos avise informando o código que enviamos no seu convite no campo
-          abaixo.
-        </p>
-        <p className="mb-8 text-xs">
-          Caso decida fazer a compra desse produto junto com outras pessoas,
-          adicione o código de acesso de todos os participantes clicando no
-          botão &quot;<span className="text-red">+</span>&quot; abaixo.
-        </p>
+        {!gift.result.bought?.length && (
+          <>
+            <h2 className="mb-4 font-serif text-sm">Avisar sobre a compra</h2>
+            <p className="mb-2 text-xs">
+              Gostou dessa opção e vai nos presentear com esse produto? Por
+              favor, nos avise informando o código que enviamos no seu convite
+              no campo abaixo.
+            </p>
+            <p className="mb-8 text-xs">
+              Caso decida fazer a compra desse produto junto com outras pessoas,
+              adicione o código de acesso de todos os participantes clicando no
+              botão &quot;<span className="text-red">+</span>&quot; abaixo.
+            </p>
 
-        <form action={buyGift}>
-          <input type="hidden" name="id" defaultValue={id} />
-
-          <AccessCodeArrayFields />
-
-          <button
-            type="submit"
-            className="mb-2 inline-block w-full bg-red px-6 py-4 text-center text-sm text-white"
-          >
-            Confirmar compra
-          </button>
-        </form>
+            <GuestCodeForm id={id} action={buyGift} />
+          </>
+        )}
       </div>
     </div>
   );
