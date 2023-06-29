@@ -41,5 +41,7 @@ export async function buyGift(data: FormData) {
   ]);
 
   revalidatePath("/gifts");
+  revalidatePath(`/gifts/${id}`);
+
   redirect("/gifts/thanks");
 }
