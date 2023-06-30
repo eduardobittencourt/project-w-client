@@ -1,6 +1,5 @@
-import Image from "next/image";
-
 import Oreo from "@/assets/oreo.png";
+import SectionHeader from "@/components/SectionHeader";
 import confirmPresence from "@/resources/mutations/confirmPresence";
 
 export const metadata = {
@@ -11,38 +10,15 @@ export const metadata = {
 
 export default function ConfirmationPage() {
   return (
-    <>
-      <div className="my-10 grid items-center gap-10 lg:my-0 lg:min-h-[calc(100vh-80px)] lg:grid-cols-2">
-        <div>
-          <h1 className="mb-4 font-serif text-lg">Confirmação de presença</h1>
-          <p className="mb-8 text-sm">
-            Estamos super ansiosos pra celebrar esse momento especial com vocês.
-            Por favor, pedimos que gentilmente confirme sua presença até o dia
-            23 de novembro de 2023. Isso nos ajudará a planejar todos os
-            detalhes da celebração e garantir que tudo esteja perfeito para
-            curtirmos cada segundo.
-          </p>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            className="mx-auto hidden h-6 w-6 animate-bounce stroke-red lg:block"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3"
-            />
-          </svg>
-        </div>
-
-        <Image
-          src={Oreo}
-          alt="Foto do Tobias"
-          className="justify-self-center"
-        />
-      </div>
+    <main>
+      <SectionHeader
+        title="Confirmação de presença"
+        description="Estamos super ansiosos pra celebrar esse momento especial com vocês. Por favor, pedimos que gentilmente confirme sua presença até o dia 23 de novembro de 2023. Isso nos ajudará a planejar todos os detalhes da celebração e garantir que tudo esteja perfeito para curtirmos cada segundo."
+        image={{
+          src: Oreo,
+          alt: "Foto do Oreo",
+        }}
+      />
 
       <div>
         <h2 className="mb-2 font-serif text-md">O que vestir</h2>
@@ -90,6 +66,6 @@ export default function ConfirmationPage() {
           </button>
         </form>
       </div>
-    </>
+    </main>
   );
 }

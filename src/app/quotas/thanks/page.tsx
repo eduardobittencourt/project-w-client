@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function QuotaThanksPage() {
   return (
-    <div className="flex flex-col items-center">
+    <main className="flex flex-col items-center">
       <h2 className="mb-8 font-serif text-hg">YAY!</h2>
       <p className="mb-8 text-center text-sm">
         Escolhemos as cotas como uma maneira de nos presentear independente de
@@ -15,6 +15,6 @@ export default function QuotaThanksPage() {
       >
         Voltar para o início
       </Link>
-    </div>
+    </main>
   );
 }

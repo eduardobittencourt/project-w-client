@@ -11,7 +11,7 @@ type QuotaErrorProps = {
 
 export default function QuotaError({ reset }: QuotaErrorProps) {
   return (
-    <div className="flex flex-col items-center">
+    <main className="flex flex-col items-center">
       <h2 className="font-serif text-lg">Ooops!</h2>
       <Image src={ErrorImage} alt="Foto do Tobias com a língua para fora" />
       <p className="mb-8 max-w-xl text-center text-sm">
@@ -26,6 +26,6 @@ export default function QuotaError({ reset }: QuotaErrorProps) {
       >
         Retornar
       </button>
-    </div>
+    </main>
   );
 }

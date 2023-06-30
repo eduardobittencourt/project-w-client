@@ -16,7 +16,7 @@ export default async function QuotaPage({ params }: QuotaPageProps) {
   const quota = await getQuota(id);
 
   return (
-    <div className="grid gap-10 md:grid-cols-2 md:gap-20">
+    <main className="grid gap-10 md:grid-cols-2 md:gap-20">
       <Image
         src={quota.result.image}
         alt={quota.result.title}
@@ -26,7 +26,7 @@ export default async function QuotaPage({ params }: QuotaPageProps) {
         className="h-auto w-full"
       />
 
-      <div>
+      <section>
         <h1 className="mb-2 font-serif text-lg">{quota.result.title}</h1>
         {quota.result.price ? (
           <span className="mb-4 inline-block border-b border-red text-sm">
@@ -38,7 +38,7 @@ export default async function QuotaPage({ params }: QuotaPageProps) {
         <p className="mb-12 text-sm">{quota.result.description}</p>
 
         <GuestCodeForm id={id} action={buyQuota} />
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
