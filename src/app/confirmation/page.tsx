@@ -1,4 +1,5 @@
 import Oreo from "@/assets/oreo.png";
+import ConfirmationCodeForm from "@/components/ConfirmationCodeForm";
 import SectionHeader from "@/components/SectionHeader";
 import confirmPresence from "@/resources/mutations/confirmPresence";
 
@@ -20,52 +21,31 @@ export default function ConfirmationPage() {
         }}
       />
 
-      <div>
-        <h2 className="mb-2 font-serif text-md">O que vestir</h2>
-        <p className="mb-7 font-mono">
+      <section>
+        <h2 className="mb-4 text-center font-serif text-md">O que vestir</h2>
+        <p className="mx-auto mb-2 max-w-2xl text-center font-mono text-sm">
           Em dezembro enfrentamos altas temperaturas nesta região. O clima tende
-          a ser bastante quente e ensolarado. Recomendamos o uso de tecidos
-          leves para maior conforto.
-          <br />
-          <br />
-          Não é necessário traje formal, mas pedimos que evitem jeans e
-          bermudas. Sugerimos que optem por calças de tecido leve, vestidos
-          frescos ou outros trajes similares, que proporcionem conforto e
-          estejam adequados à estação e ao evento.
+          a ser bastante quente e ensolarado. Recomendamos o uso de{" "}
+          <b>tecidos leves</b> para maior conforto.
         </p>
+        <p className="mx-auto mb-8 max-w-2xl text-center font-mono text-sm">
+          Não é necessário traje formal, mas pedimos que{" "}
+          <b>evitem jeans e bermudas</b>. Sugerimos que optem por calças de
+          tecido leve, vestidos frescos ou outros trajes similares, que
+          proporcionem conforto e estejam adequados à estação e ao evento.
+        </p>
+      </section>
 
-        <div className="mx-auto mb-10 mt-5 h-px w-28 bg-red" />
-      </div>
+      <div className="mx-auto mb-10 mt-5 h-px w-28 bg-red" />
 
-      <div>
+      <section className="mb-20">
         <h2 className="mb-2 text-center font-serif text-md">Tudo certo?</h2>
         <p className="mb-7 text-center font-mono">
           Insira seu código para confirmar presença
         </p>
 
-        <div className="mx-auto mb-10 mt-5 h-px w-28 bg-red" />
-
-        <form
-          className="flex flex-col items-center gap-8"
-          action={confirmPresence}
-        >
-          <input
-            type="text"
-            name="code"
-            className="border p-4 text-center uppercase"
-            placeholder="ABC12"
-            required
-            minLength={5}
-            maxLength={5}
-          />
-          <button
-            type="submit"
-            className="mb-2 inline-block bg-red px-8 py-4 text-center font-mono text-white"
-          >
-            Confirmar
-          </button>
-        </form>
-      </div>
+        <ConfirmationCodeForm />
+      </section>
     </main>
   );
 }

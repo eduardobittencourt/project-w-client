@@ -18,7 +18,7 @@ export default async function GiftPage({ params }: GiftPageProps) {
   const gift = await getGift(id);
 
   return (
-    <main className="grid gap-10 md:grid-cols-2 md:gap-20">
+    <main className="mt-10 grid gap-10 md:grid-cols-2 md:gap-20">
       <Image
         src={gift.result.image}
         alt={gift.result.title}

@@ -1,5 +1,7 @@
 "use server";
 
+import { redirect } from "next/navigation";
+
 import { updateSanityContent } from "@/providers/sanity";
 
 export async function confirmGuestPresence(data: FormData) {
@@ -23,4 +25,6 @@ export async function confirmGuestPresence(data: FormData) {
       },
     },
   ]);
+
+  redirect("/confirmation/thanks");
 }
