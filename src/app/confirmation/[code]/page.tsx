@@ -14,10 +14,9 @@ export default async function GuestConfirmationPage({
         Confirmar presença
       </h2>
       <p className="mx-auto mb-8 max-w-2xl text-center font-mono">
-        O código que te enviamos está atrelado a várias pessoas ao mesmo tempo,
-        mas você pode especificar quais pessoas vão comparecer no nosso
-        casamento aqui. Isso nos ajuda a organizar o evento da melhor maneira
-        possível para todos.
+        Antes de confirmar, por favor selecione abaixo quem estará presente no
+        nosso casamento. Precisamos dessa informação para que tudo seja
+        planejado e personalizado com muito carinho.
       </p>
 
       <ConfirmationGuestsForm guests={guests.result} />
