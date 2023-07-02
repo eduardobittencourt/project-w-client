@@ -9,11 +9,11 @@ export default async function GuestConfirmationPage({
   const guests = await getGuests(code);
 
   return (
-    <div>
+    <main className="mt-10">
       <h2 className="mb-2 text-center font-serif text-md">
         Selecione quem vai participar do evento
       </h2>
-      <p className="mb-7 text-center font-mono">
+      <p className="mb-8 text-center font-mono">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis
         ante sed nunc fermentum efficitur quis nec enim. Suspendisse tortor
         tortor, rhoncus fermentum sem sit amet, porttitor volutpat tellus. Duis
@@ -40,8 +40,13 @@ export default async function GuestConfirmationPage({
           </div>
         ))}
 
-        <button type="submit">Confirmar</button>
+        <button
+          className="mt-8 w-full bg-red px-12 py-4 text-center text-sm text-white md:w-auto"
+          type="submit"
+        >
+          Confirmar
+        </button>
       </form>
-    </div>
+    </main>
   );
 }

@@ -1,18 +1,32 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 
-export default function GuestConfirmationError() {
+import ErrorImage from "@/assets/error.png";
+
+type GiftErrorProps = {
+  error: Error;
+  reset: () => void;
+};
+
+export default function GuestConfirmationError({ reset }: GiftErrorProps) {
   return (
-    <div>
-      <h2>Ooops!</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis
-        ante sed nunc fermentum efficitur quis nec enim. Suspendisse tortor
-        tortor, rhoncus fermentum sem sit amet, porttitor volutpat tellus. Duis
-        vel pulvinar libero, vitae euismod felis.
+    <main className="flex flex-col items-center">
+      <h2 className="font-serif text-lg">Ooops!</h2>
+      <Image src={ErrorImage} alt="Foto do Tobias com a língua para fora" />
+      <p className="mb-8 max-w-xl text-center text-sm">
+        Tem certeza que digitou o código correto? O evento do ano é concorrido e
+        exclusivo, então confira o código que foi enviado no seu convite e tente
+        novamente. Se o problema persistir entre em contato conosco que vamos te
+        ajudar!
       </p>
-      <Link href="/confirmation">Tentar novamente</Link>
-    </div>
+      <Link
+        className="w-full bg-red px-12 py-4 text-center text-sm text-white md:w-auto"
+        href="/confirmation"
+      >
+        Retornar
+      </Link>
+    </main>
   );
 }
