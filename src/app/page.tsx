@@ -17,8 +17,7 @@ export default function RootPage() {
       <div>
         <h2 className="text-center font-mono text-xs md:text-sm">
           23 de Dezembro de 2023
-          <span className="px-3 text-red">&#8226;</span>
-          18h às 22h
+          <span className="px-3 text-red">&#8226;</span>18h
         </h2>
 
         <div className="mx-auto my-5 h-px w-10 bg-red" />
