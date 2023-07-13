@@ -37,6 +37,12 @@ export default async function QuotaPage({ params }: QuotaPageProps) {
         )}
         <p className="mb-12 text-sm">{quota.result.description}</p>
 
+        <h2 className="mb-4 font-serif text-sm">Avisar sobre a cota</h2>
+        <p className="mb-2 text-xs">
+          Gostou dessa opção e vai nos presentear com esse valor? Por favor, nos
+          avise informando o código que enviamos no seu convite no campo abaixo.
+        </p>
+
         <GuestCodeForm id={id} action={buyQuota} />
       </section>
     </main>
